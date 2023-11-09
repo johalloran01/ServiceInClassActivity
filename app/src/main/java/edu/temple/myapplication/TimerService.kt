@@ -3,6 +3,7 @@ package edu.temple.myapplication
 import android.app.Service
 import android.content.Intent
 import android.os.Binder
+import android.os.Handler
 import android.os.IBinder
 import android.util.Log
 
@@ -14,6 +15,10 @@ class TimerService : Service() {
     lateinit var t: TimerThread
 
     private var paused = false
+
+    lateinit var timerHandler: Handler
+
+    var isPaused = false
 
     inner class TimerBinder : Binder() {
 
