@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var timerbinder : TimerService.TimerBinder
     var isConnected = false
     val timerHandler = Handler(Looper.getMainLooper()){
+        timerTextView.text = it.what.toString()
         true
     }
 
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        timerTextView = findViewById(R.id.timerTextView)
 
         bindService(
             Intent(this, TimerService::class.java),
