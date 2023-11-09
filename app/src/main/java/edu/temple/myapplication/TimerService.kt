@@ -47,10 +47,6 @@ class TimerService : Service() {
             this@TimerService.pause()
         }
 
-        fun getService() : TimerService {
-            return this@TimerService
-        }
-
     }
 
     override fun onCreate() {
