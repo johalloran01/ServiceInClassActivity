@@ -9,15 +9,22 @@ import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
 import android.widget.Button
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var timerTextView :TextView
+
     lateinit var timerbinder : TimerService.TimerBinder
     var isConnected = false
+    val timerHandler = Handler(Looper.getMainLooper()){
+        true
+    }
 
     val serviceConnection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
             timerbinder = service as TimerService.TimerBinder
+            timerbinder.setHandler(timerHandler)
             isConnected = true
         }
 

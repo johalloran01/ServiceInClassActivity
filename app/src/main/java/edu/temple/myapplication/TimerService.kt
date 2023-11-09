@@ -40,6 +40,11 @@ class TimerService : Service() {
             }
         }
 
+        //Set handler function
+        fun setHandler(handler: Handler){
+            timerHandler = handler
+        }
+
         // Stop a currently running timer
         fun stop() {
             if (::t.isInitialized || isRunning) {
@@ -85,6 +90,10 @@ class TimerService : Service() {
                     Log.d("Countdown", i.toString())
 
                         while (paused);
+                        if(::timerHandler.isInitialized){
+                            timerHandler.sendEmptyMessage(i)
+                        }
+
                         sleep(1000)
 
                 }
